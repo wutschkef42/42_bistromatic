@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eval_arith_expr.c                                  :+:      :+:    :+:   */
+/*   action_parse_error.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wutschkef <felix.wutschke@gmail.com>       +#+  +:+       +#+        */
+/*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 20:55:50 by wutschkef         #+#    #+#             */
-/*   Updated: 2018/01/10 20:55:52 by wutschkef        ###   ########.fr       */
+/*   Created: 2018/01/15 13:57:25 by fwutschk          #+#    #+#             */
+/*   Updated: 2018/01/15 13:57:27 by fwutschk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsm.h"
 #include "bsm_tools.h"
 
-void    action_parse_error(t_fsm *fsm, int c)
+void	action_parse_error(t_fsm *fsm, int c)
 {
-    (void)c;
-    (void)fsm;
+	(void)c;
+	(void)fsm;
 }

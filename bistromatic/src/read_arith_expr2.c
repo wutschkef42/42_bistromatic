@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   action_read_operand_close_bracket.c                :+:      :+:    :+:   */
+/*   read_arith_expr2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 14:03:31 by fwutschk          #+#    #+#             */
-/*   Updated: 2018/01/15 14:03:35 by fwutschk         ###   ########.fr       */
+/*   Created: 2018/01/15 15:34:03 by fwutschk          #+#    #+#             */
+/*   Updated: 2018/01/15 15:34:31 by fwutschk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsm.h"
+#include "bsm_tools.h"
 
 /*
-** pop operators off operator stack until first '('
-** enqueue popped operators to output string
+** check if base charset contains invalid chars (operators or brackets)
 */
 
-void	action_read_operand_close_bracket(t_fsm *fsm, int c)
+int		charset_invalid(const char *charset)
 {
-	(fsm->rpn_arith_expr)[fsm->pos->rpn_pos] = TOKEN_DELIM;
-	fsm->pos->rpn_pos++;
-	pop_til_open_bracket(fsm, c);
-	fsm->current_state = STATE_ReadCloseBracket;
+	size_t		i;
+	static char	forbidden[7] = {'+', '-', '*', '/', '%', '(', ')'};
+
+	if (!charset)
+		return (1);
+	i = 0;
+	while (i < sizeof(forbidden) / sizeof(forbidden[0]))
+	{
+		if (bsm_strchr(charset, forbidden[i]))
+		{
+			bsm_putstr("syntax error", 2);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }

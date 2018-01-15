@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eval_arith_expr.c                                  :+:      :+:    :+:   */
+/*   action_end_of_data.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wutschkef <felix.wutschke@gmail.com>       +#+  +:+       +#+        */
+/*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 20:55:50 by wutschkef         #+#    #+#             */
-/*   Updated: 2018/01/10 20:55:52 by wutschkef        ###   ########.fr       */
+/*   Created: 2018/01/15 13:52:38 by fwutschk          #+#    #+#             */
+/*   Updated: 2018/01/15 13:52:40 by fwutschk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsm.h"
 
-void    action_end_of_data(t_fsm *fsm, int c)
+void	action_end_of_data(t_fsm *fsm, int c)
 {
-    (void)c;
-    (void)fsm;
+	(void)c;
+	(void)fsm;
 }

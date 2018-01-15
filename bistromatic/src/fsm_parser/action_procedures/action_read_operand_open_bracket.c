@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eval_arith_expr.c                                  :+:      :+:    :+:   */
+/*   action_read_operand_open_bracket.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wutschkef <felix.wutschke@gmail.com>       +#+  +:+       +#+        */
+/*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 20:55:50 by wutschkef         #+#    #+#             */
-/*   Updated: 2018/01/10 20:55:52 by wutschkef        ###   ########.fr       */
+/*   Created: 2018/01/15 14:04:49 by fwutschk          #+#    #+#             */
+/*   Updated: 2018/01/15 14:04:50 by fwutschk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 ** so throw a syntax error
 */
 
-void    action_read_operand_open_bracket(t_fsm *fsm, int c)
+void	action_read_operand_open_bracket(t_fsm *fsm, int c)
 {
-    (void)c;
-    fsm->current_state = STATE_ParseError;
+	(void)c;
+	fsm->current_state = STATE_ParseError;
 }

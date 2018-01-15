@@ -3,6 +3,7 @@ NAME_TESTS = test_suite
 
 SRC = stack.c \
 		read_arith_expr.c \
+		read_arith_expr2.c \
 		parser_utils.c \
 		tokenize_arith_expr.c \
 		eval_arith_expr.c \
@@ -16,6 +17,7 @@ SRC = stack.c \
 		ops/convert.c \
 		\
 		fsm_parser/fsm_parse_arith_expr.c \
+		fsm_parser/fsm_parse_arith_expr2.c \
 		fsm_parser/get_new_event.c \
 		\
 		fsm_parser/action_procedures/action_end_of_data.c \
@@ -65,6 +67,7 @@ SRC = stack.c \
 		fsm_parser/action_procedures/action_read_sign_sub.c \
 		\
 		fsm_parser/action_procedures/action_utils.c \
+		fsm_parser/action_procedures/action_utils2.c \
 
 SRC_UNIT_TESTS = unit-tests/src/spec_main.c \
 					unit-tests/src/spec_parse_arith_expr.c \

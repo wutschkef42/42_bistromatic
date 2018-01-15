@@ -6,36 +6,12 @@
 /*   By: wutschkef <felix.wutschke@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 20:38:09 by wutschkef         #+#    #+#             */
-/*   Updated: 2018/01/10 20:52:32 by wutschkef        ###   ########.fr       */
+/*   Updated: 2018/01/15 15:34:24 by fwutschk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsm.h"
 #include "bsm_tools.h"
-
-/*
-** check if base charset contains invalid chars (operators or brackets)
-*/
-
-static int	charset_invalid(const char *charset)
-{
-	size_t		i;
-	static char	forbidden[7] = {'+', '-', '*', '/', '%', '(', ')'};
-
-	if (!charset)
-		return (1);
-	i = 0;
-	while (i < sizeof(forbidden) / sizeof(forbidden[0]))
-	{
-		if (bsm_strchr(charset, forbidden[i]))
-		{
-			bsm_putstr("syntax error", 2);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
 
 /*
 ** check if charset contains character c
@@ -71,7 +47,6 @@ static int	has_repeat_characters(const char *charset)
 	return (0);
 }
 
-
 /*
 ** check if arithmetric expression is valid:
 **	contains only operators and digits from the provided charset
@@ -82,8 +57,8 @@ static int	arith_expr_invalid(const char *arith_expr, const char *charset,
 {
 	int	i;
 	int	len;
-	(void)expr_len;
 
+	(void)expr_len;
 	if (!charset || !arith_expr)
 		return (1);
 	i = 0;
@@ -153,8 +128,10 @@ int			bsm_read_stdin(char **arith_expr, char *charset, int expr_len)
 		return (1);
 	}
 	nread = read(0, *arith_expr, expr_len);
-	if ((*arith_expr)[nread-1] == '\n')
-		(*arith_expr)[nread-1] = '\0';
+	if ((nread <= 1 && (*arith_expr)[nread - 1] == '\n') || nread == 0)
+		return (1);
+	if ((*arith_expr)[nread - 1] == '\n')
+		(*arith_expr)[nread - 1] = '\0';
 	else
 		(*arith_expr)[nread] = '\0';
 	if (arith_expr_invalid(*arith_expr, charset, expr_len))

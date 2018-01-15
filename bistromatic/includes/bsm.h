@@ -6,7 +6,7 @@
 /*   By: wutschkef <felix.wutschke@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 19:57:39 by wutschkef         #+#    #+#             */
-/*   Updated: 2018/01/10 20:02:23 by wutschkef        ###   ########.fr       */
+/*   Updated: 2018/01/15 15:36:45 by fwutschk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,10 @@ typedef struct		s_position
 	int				rpn_pos;
 }					t_position;
 
-
-
-
 /*
 ** STATE MACHINE STATES
 */
+
 typedef enum		e_state
 {
 	STATE_EndOfData,
@@ -92,11 +90,10 @@ typedef struct		s_fsm
 	t_event		current_event;
 }					t_fsm;
 
-/* fsm parser */
-t_event 			bsm_get_new_event(int c);
-char				*bsm_infix_to_rpn(const char *infix_arith_expr, int expr_len);
+t_event				bsm_get_new_event(int c);
+char				*bsm_infix_to_rpn(const char *infix_arith_expr,
+						int expr_len);
 
-/* action procedures */
 void				action_end_of_data(t_fsm *fsm, int c);
 
 void				action_init_state_add(t_fsm *fsm, int c);
@@ -145,18 +142,17 @@ void				action_read_sign_op(t_fsm *fsm, int c);
 void				action_read_sign_open_bracket(t_fsm *fsm, int c);
 void				action_read_sign_sub(t_fsm *fsm, int c);
 
-/* action utils */
 void				insert_new_operator(t_fsm *fsm, t_operator *new_operator);
 void				pop_til_open_bracket(t_fsm *fsm, int c);
 void				preprocess_stack(t_fsm *fsm, t_operator *new_operator);
 t_operator			*bsm_new_operator(char op_token, t_fsm *fsm);
- void				bsm_enqueue_operand_digit(t_fsm *fsm, int c);
- void				bsm_enqueue_operator(t_operator *stack_top_operator, char *rpn_arith_expr, t_position *pos);
- void				bsm_set_op_precedence(t_operator *operator);
- void				bsm_set_op_type(char op_token, t_operator *operator, t_state current_state);
+void				bsm_enqueue_operand_digit(t_fsm *fsm, int c);
+void				bsm_enqueue_operator(t_operator *stack_top_operator,
+						char *rpn_arith_expr, t_position *pos);
+void				bsm_set_op_precedence(t_operator *operator);
+void				bsm_set_op_type(char op_token, t_operator *operator,
+						t_state current_state);
 
-
-/* read and eval stuff */
 int					bsm_parse_commandline_args(int ac, char **av,
 						int *stdin_len, char **charset);
 int					bsm_read_stdin(char **arith_expr, char *charset,
@@ -165,5 +161,7 @@ int					bsm_is_operator(char c);
 char				**bsm_tokenize(const char *s);
 void				bsm_print_tokens(char **tokens);
 char				*bsm_rpn_eval(char *rpn_arith_expr, char *charset);
+int					charset_invalid(const char *charset);
+char				*strip_whitespace(char *s);
 
 #endif

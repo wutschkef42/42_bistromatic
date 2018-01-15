@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   action_read_open_bracket_open_bracket.c            :+:      :+:    :+:   */
+/*   fsm_parse_arith_expr2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 14:01:57 by fwutschk          #+#    #+#             */
-/*   Updated: 2018/01/15 14:01:59 by fwutschk         ###   ########.fr       */
+/*   Created: 2018/01/15 15:28:02 by fwutschk          #+#    #+#             */
+/*   Updated: 2018/01/15 15:28:21 by fwutschk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsm.h"
+#include "bsm_tools.h"
+#include "stack.h"
 
-void	action_read_open_bracket_open_bracket(t_fsm *fsm, int c)
+char		*strip_whitespace(char *s)
 {
-	t_operator	*new_operator;
+	int len;
 
-	new_operator = bsm_new_operator((char)c, fsm);
-	insert_new_operator(fsm, new_operator);
+	len = bsm_strlen(s);
+	while (s[len - 1] == TOKEN_DELIM)
+	{
+		s[len - 1] = '\0';
+		len--;
+	}
+	return (s);
 }

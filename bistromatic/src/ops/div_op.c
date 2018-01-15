@@ -6,14 +6,14 @@
 /*   By: dpearson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 15:29:43 by dpearson          #+#    #+#             */
-/*   Updated: 2018/01/10 20:54:43 by wutschkef        ###   ########.fr       */
+/*   Updated: 2018/01/15 13:48:59 by fwutschk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ops.h"
 #include "bsm_tools.h"
 
-char	*add_zeroes(char *str, int len, const char *charset)
+char		*add_zeroes(char *str, int len, const char *charset)
 {
 	char	*tmp;
 	int		i;
@@ -33,7 +33,7 @@ char	*add_zeroes(char *str, int len, const char *charset)
 	return (tmp);
 }
 
-int		zero_check(char *dividend, char *divisor, const char *charset)
+int			zero_check(char *dividend, char *divisor, const char *charset)
 {
 	int		z;
 	int		init_len;
@@ -56,7 +56,7 @@ int		zero_check(char *dividend, char *divisor, const char *charset)
 	return (((z) > 0) ? z : 0);
 }
 
-char	*bsm_div(t_ops *ops)
+char		*bsm_div(t_ops *ops)
 {
 	char	*tmp_divisor;
 	char	*ret;
@@ -99,12 +99,12 @@ static int	div_zero_check(t_ops *ops)
 	return (1);
 }
 
-char	*op_div(t_ops *ops)
+char		*op_div(t_ops *ops)
 {
 	char	*quotient;
 
 	if (div_zero_check(ops) || !(negative_handle(ops)))
-		return(NULL);
+		return (NULL);
 	if (bsm_strequ(ops->str1, ops->str2))
 	{
 		quotient = bsm_memalloc(2 + ops->neg);

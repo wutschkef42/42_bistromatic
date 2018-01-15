@@ -6,7 +6,7 @@
 /*   By: dpearson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 15:06:17 by dpearson          #+#    #+#             */
-/*   Updated: 2018/01/10 19:54:35 by wutschkef        ###   ########.fr       */
+/*   Updated: 2018/01/15 13:46:15 by fwutschk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef struct	s_operations
 	int			j;
 }				t_ops;
 
-char			*bsm_intarr_to_str(int *result, int len, int rev, const char *charset);
+char			*bsm_intarr_to_str(int *result, int len, int rev,
+					const char *charset);
 char			*bsm_subarr_to_str(int *result, int len, const char *charset);
 int				is_bigger(char *big, char *small, const char *charset);
 int				negative_handle(t_ops *ops);
